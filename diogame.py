@@ -24,10 +24,10 @@ score = [0, 0]
 round_over = False
 ROUND_OVER_COOLDOWN = 2000
 
-WARRIOR_SIZE = 162
-WARRIOR_SCALE = 4
-WARRIOR_OFFSET = [72, 56]
-WARRIOR_DATA = [WARRIOR_SIZE, WARRIOR_SCALE, WARRIOR_OFFSET]
+DIO_SIZE = 162
+DIO_SCALE = 4
+DIO_OFFSET = [72, 56]
+DIO_DATA = [DIO_SIZE, DIO_SCALE, DIO_OFFSET]
 WIZARD_SOZE = 250 
 WIZARD_SCALE = 3
 WIZARD_OFFSET = [112, 107]
@@ -36,7 +36,7 @@ WIZARD_DATA = [WIZARD_SOZE, WIZARD_SCALE, WIZARD_OFFSET]
 
 bg_image = pygame.image.load("assets/images/background/background.jpg").convert_alpha()
 
-warrior_sheet = pygame.image.load("assets/images/warrior/Sprites/warrior.png").convert_alpha()
+warrior_sheet = pygame.image.load("assets/images/dio/sprites/dio.png").convert_alpha()
 wizard_sheet = pygame.image.load("assets/images/wizard/Sprites/wizard.png").convert_alpha()
 
 
@@ -66,7 +66,7 @@ def draw_health_bar(health, x, y):
 
 
 
-fighter_1 = Fighter(1, 200, 310, False, WARRIOR_DATA, warrior_sheet, WARRIOR_ANIMATION_STEPS)
+fighter_1 = Fighter(1, 200, 310, False, DIO_DATA, warrior_sheet, WARRIOR_ANIMATION_STEPS)
 fighter_2 = Fighter(2, 700, 310, True, WIZARD_DATA, wizard_sheet, WIZARD_ANIMATION_STEPS)
 
 run = True
@@ -116,7 +116,7 @@ while run:
         if pygame.time.get_ticks() - round_over_time > ROUND_OVER_COOLDOWN:
             round_over = False
             intro_count = 3
-            fighter_1 = Fighter(1, 200, 310, False, WARRIOR_DATA, warrior_sheet, WARRIOR_ANIMATION_STEPS)
+            fighter_1 = Fighter(1, 200, 310, False, DIO_DATA, warrior_sheet, WARRIOR_ANIMATION_STEPS)
             fighter_2 = Fighter(2, 700, 310, True, WIZARD_DATA, wizard_sheet, WIZARD_ANIMATION_STEPS)       
 
 
@@ -129,4 +129,3 @@ while run:
 
 
     pygame.display.update()
-

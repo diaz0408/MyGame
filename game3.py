@@ -1,5 +1,6 @@
 import pygame
 from fighter import Fighter
+from boss import Boss
 
 pygame.init()
 
@@ -9,7 +10,7 @@ SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT ))
-pygame.display.set_caption("Fighting Game")
+pygame.display.set_caption("Fighting Game - Boss Fight")
 
 clock = pygame.time.Clock()
 FPS = 60
@@ -58,16 +59,25 @@ def draw_bg():
     scaled_bg = pygame.transform.scale(bg_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
     screen.blit(scaled_bg, (0, 0))
 
-def draw_health_bar(health, x, y):
-    ratio = health / 100
+
+
+
+def draw_fighter1_health_bar(health, x, y, fighter_1):
+    ratio = health / fighter_1.health
     pygame.draw.rect(screen, WHITE, (x - 2, y - 2, 404, 34 ))
+    pygame.draw.rect(screen, RED, (x, y, 400, 30 ))
+    pygame.draw.rect(screen, YELLOW, (x, y, 400 * ratio, 30))
+
+def draw_fighter2_health_bar(health, x, y, fighter_2):
+    ratio = health / 250
+    pygame.draw.rect(screen, WHITE, (x - 2 , y - 2 , 404, 34 ))
     pygame.draw.rect(screen, RED, (x, y, 400, 30 ))
     pygame.draw.rect(screen, YELLOW, (x, y, 400 * ratio, 30))
 
 
 
 fighter_1 = Fighter(1, 200, 310, False, WARRIOR_DATA, warrior_sheet, WARRIOR_ANIMATION_STEPS)
-fighter_2 = Fighter(2, 700, 310, True, WIZARD_DATA, wizard_sheet, WIZARD_ANIMATION_STEPS)
+fighter_2 = Boss(2, 700, 310, True, WIZARD_DATA, wizard_sheet, WIZARD_ANIMATION_STEPS)
 
 run = True
 while run:
@@ -78,10 +88,10 @@ while run:
     draw_bg()
 
 
-    draw_health_bar(fighter_1.health, 20, 20)
-    draw_health_bar(fighter_2.health, 580, 20)
+    draw_fighter1_health_bar(fighter_1.health, 20, 20, fighter_1)
+    draw_fighter2_health_bar(fighter_2.health, 580, 20, fighter_2)
     draw_text("P1: " + str(score[0]), score_font, RED, 20, 40)
-    draw_text("P2: " + str(score[1]), score_font, RED, 860, 40)
+    draw_text("BOSS: " + str(score[1]), score_font, RED, 780, 40)
 
     if intro_count <= 0:
 

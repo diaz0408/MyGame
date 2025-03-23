@@ -1,5 +1,5 @@
 import pygame
-class Fighter():
+class Boss():
     def __init__(self, player, x, y, flip, data, sprite_sheet, animation_steps):
         self.player = player
         self.size = data[0]
@@ -19,7 +19,7 @@ class Fighter():
         self.attack_type = 0
         self.attack_cooldown = 0
         self.hit = False
-        self.health = 100
+        self.health = 250
         self.alive = True
 
     def load_images(self, sprite_sheet, animation_steps):
@@ -164,7 +164,7 @@ class Fighter():
             self.attacking = True
             attacking_rect = pygame.Rect(self.rect.centerx - (2 * self.rect.width * self.flip), self.rect.y, 2 * self.rect.width, self.rect.height)
             if attacking_rect.colliderect(target.rect):
-                target.health -=  10
+                target.health -=  25
                 target.hit = True
            
 
